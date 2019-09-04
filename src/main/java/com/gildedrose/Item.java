@@ -14,6 +14,18 @@ public class Item {
         this.quality = quality;
     }
 
+    public boolean isSulfuras() {
+        return name.equals("Sulfuras, Hand of Ragnaros");
+    }
+
+    public boolean isBackstage() {
+        return name.equals("Backstage passes to a TAFKAL80ETC concert");
+    }
+
+    public boolean isAgedBrie() {
+        return name.equals("Aged Brie");
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
