@@ -1,12 +1,9 @@
 package com.gildedrose;
 
 public class Item {
-
-    public String name;
-
-    public int sellIn;
-
-    public int quality;
+    private String name;
+    private int sellIn;
+    private int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
@@ -15,15 +12,15 @@ public class Item {
     }
 
     public boolean isSulfuras() {
-        return name.equals("Sulfuras, Hand of Ragnaros");
+        return false;
     }
 
     public boolean isBackstage() {
-        return name.equals("Backstage passes to a TAFKAL80ETC concert");
+        return false;
     }
 
     public boolean isAgedBrie() {
-        return name.equals("Aged Brie");
+        return false;
     }
 
     @Override
