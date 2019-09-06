@@ -2,25 +2,13 @@ package com.gildedrose;
 
 public class Item {
     private String name;
-    private int sellIn;
-    private int quality;
+    protected int sellIn;
+    protected int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
-    }
-
-    public boolean isSulfuras() {
-        return false;
-    }
-
-    public boolean isBackstage() {
-        return false;
-    }
-
-    public boolean isAgedBrie() {
-        return false;
     }
 
     @Override
@@ -31,56 +19,20 @@ public class Item {
     void passOneDay() {
         updateSellInDays();
         updateQuality();
-    }
-
-    private void updateQuality() {
-        if (!isAgedBrie()
-                && !isBackstage()) {
-            if (quality > 0) {
-                if (!isSulfuras()) {
-                    quality = quality - 1;
-                }
-            }
-        } else {
-            if (quality < 50) {
-                quality = quality + 1;
-
-                if (isBackstage()) {
-                    if (sellIn < 10) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-
-                    if (sellIn < 5) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-                }
-            }
-        }
-
         if (isExpired()) {
             updateQualityAfterExpired();
         }
     }
 
-    private void updateQualityAfterExpired() {
-        if (!isAgedBrie()) {
-            if (!isBackstage()) {
-                if (quality > 0) {
-                    if (!isSulfuras()) {
-                        quality = quality - 1;
-                    }
-                }
-            } else {
-                quality = 0;
-            }
-        } else {
-            if (quality < 50) {
-                quality = quality + 1;
-            }
+    protected void updateQuality() {
+        if (quality > 0) {
+            quality = quality - 1;
+        }
+    }
+
+    protected void updateQualityAfterExpired() {
+        if (quality > 0) {
+            quality = quality - 1;
         }
     }
 
@@ -88,11 +40,7 @@ public class Item {
         return sellIn < 0;
     }
 
-    private void updateSellInDays() {
-        if (isSulfuras()) {
-            return;
-        }
-
+    protected void updateSellInDays() {
         sellIn = sellIn - 1;
     }
 }
