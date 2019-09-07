@@ -25,12 +25,24 @@ public class Item {
     }
 
     protected void updateQuality() {
-        if (quality > 0) {
-            quality = quality - 1;
-        }
+        decreaseQuality();
     }
 
     protected void updateQualityAfterExpired() {
+        decreaseQuality();
+    }
+
+    protected void updateSellInDays() {
+        sellIn = sellIn - 1;
+    }
+
+    protected void increaseQuality() {
+        if (quality < 50) {
+            quality = quality + 1;
+        }
+    }
+
+    private void decreaseQuality() {
         if (quality > 0) {
             quality = quality - 1;
         }
@@ -38,9 +50,5 @@ public class Item {
 
     private boolean isExpired() {
         return sellIn < 0;
-    }
-
-    protected void updateSellInDays() {
-        sellIn = sellIn - 1;
     }
 }
